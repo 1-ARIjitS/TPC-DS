@@ -1,0 +1,49 @@
+Copy_data
+├── data_sf_<SF>.sql
+Data
+├── data_sf_<SF>
+├── maintenance_data_sf_<SF>
+maintenance
+├── maintenance_data_sf_<SF>
+│   ├── method_1
+│   │   ├── 0_tpcds_source.sql
+│   │   ├── 1_populate_s_tables.sql
+│   │   ├── 2_create_views.sql
+│   │   ├── 3_free_tuples_present_on_views.sql
+│   │   ├── 4_populate_main_tables_1.sql
+│   │   └── 5_drop_s_tables_and_views.sql
+│   ├── method_2
+│   │   └── 0_delete.sql
+│   └── method_3
+│       └── 0_inventory_delete.sql
+queries
+│   ├── queries_sf_<SF>
+│   │   ├── 99 sql queries (not optimized)
+│   ├── optimized_queries_sf_<SF>
+│   │   └── 99 sql queries (optimized)
+query_optimization
+├── optimized_queries
+├── query_plans_before_optimization
+├── query_plans_after_optimization
+query_templates
+├── Templates of 99 queries and dialect
+Results_sf_<SF>
+├── Contains the result of a particular SF
+scripts
+├── data_generation.sh
+├── db_postprocess.py
+├── generate_load_data.sh
+├── load_test.py
+├── maintenance_test.py
+├── power_test.py
+├── query_generation.sh
+├── run_all.sh
+└── throughput_test.py
+tools
+├── dsdgen (used for data generation)
+├── dsqgen (used for query generation)
+└── tpcds.sql (used to create tables in the DB)
+
+
+
+

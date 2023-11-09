@@ -1,0 +1,4 @@
+Iteration 3 run 1: total time taken for running maintenace test on scale factor 5 = 89.12742 seconds
+Iteration 3 run 2: total time taken for running maintenace test on scale factor 5 = 83.5876 seconds
+Iteration 4 run 1: total time taken for running maintenace test on scale factor 5 = 87.033968 seconds
+Iteration 4 run 2: total time taken for running maintenace test on scale factor 5 = 120.264193 seconds

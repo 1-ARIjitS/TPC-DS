@@ -1,0 +1,3 @@
+Sql File,Start Time,End Time,Execution Time
+Creating table with tpcds.sql,2023-11-01 13:30:42.373981,2023-11-01 13:30:42.440712,0.066731
+"['copying data into the database', datetime.datetime(2023, 11, 1, 13, 30, 42, 596489), datetime.datetime(2023, 11, 1, 13, 41, 54, 149765), 671.553276]"

@@ -1,0 +1,40 @@
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|QUERY PLAN                                                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|Limit  (cost=71824.45..71824.46 rows=1 width=72)                                                                                                                   |
+|  ->  Sort  (cost=71824.45..71824.46 rows=1 width=72)                                                                                                              |
+|        Sort Key: (count(DISTINCT ws1.ws_order_number))                                                                                                            |
+|        ->  Aggregate  (cost=71824.43..71824.44 rows=1 width=72)                                                                                                   |
+|              ->  Sort  (cost=71824.39..71824.40 rows=4 width=16)                                                                                                  |
+|                    Sort Key: ws1.ws_order_number                                                                                                                  |
+|                    ->  Gather  (cost=1012.39..71824.35 rows=4 width=16)                                                                                           |
+|                          Workers Planned: 2                                                                                                                       |
+|                          ->  Nested Loop Semi Join  (cost=12.39..70823.95 rows=2 width=16)                                                                        |
+|                                ->  Nested Loop  (cost=11.11..69198.58 rows=2 width=16)                                                                            |
+|                                      ->  Nested Loop  (cost=10.81..69192.56 rows=19 width=20)                                                                     |
+|                                            ->  Hash Join  (cost=10.51..68016.14 rows=22495 width=24)                                                              |
+|                                                  Hash Cond: (ws1.ws_web_site_sk = web_site.web_site_sk)                                                           |
+|                                                  ->  Parallel Seq Scan on web_sales ws1  (cost=0.00..65392.69 rows=900069 width=28)                               |
+|                                                  ->  Hash  (cost=10.50..10.50 rows=1 width=4)                                                                     |
+|                                                        ->  Seq Scan on web_site  (cost=0.00..10.50 rows=1 width=4)                                                |
+|                                                              Filter: (web_company_name = 'pri'::bpchar)                                                           |
+|                                            ->  Memoize  (cost=0.30..0.33 rows=1 width=4)                                                                          |
+|                                                  Cache Key: ws1.ws_ship_date_sk                                                                                   |
+|                                                  Cache Mode: logical                                                                                              |
+|                                                  ->  Index Scan using date_dim_pkey on date_dim  (cost=0.29..0.32 rows=1 width=4)                                 |
+|                                                        Index Cond: (d_date_sk = ws1.ws_ship_date_sk)                                                              |
+|                                                        Filter: ((d_date >= '1999-05-01'::date) AND (d_date <= '1999-06-30 00:00:00'::timestamp without time zone))|
+|                                      ->  Index Scan using customer_address_pkey on customer_address  (cost=0.29..0.32 rows=1 width=4)                             |
+|                                            Index Cond: (ca_address_sk = ws1.ws_ship_addr_sk)                                                                      |
+|                                            Filter: (ca_state = 'TX'::bpchar)                                                                                      |
+|                                ->  Nested Loop  (cost=1.28..1620.08 rows=18 width=12)                                                                             |
+|                                      ->  Nested Loop  (cost=0.85..1618.92 rows=1 width=12)                                                                        |
+|                                            Join Filter: (web_returns.wr_order_number = ws1_1.ws_order_number)                                                     |
+|                                            ->  Index Only Scan using web_returns_pkey on web_returns  (cost=0.42..1616.52 rows=2 width=4)                         |
+|                                                  Index Cond: (wr_order_number = ws1.ws_order_number)                                                              |
+|                                            ->  Index Scan using idx_order_number on web_sales ws1_1  (cost=0.43..0.92 rows=22 width=8)                            |
+|                                                  Index Cond: (ws_order_number = ws1.ws_order_number)                                                              |
+|                                      ->  Index Scan using idx_order_number on web_sales ws2  (cost=0.43..0.98 rows=18 width=8)                                    |
+|                                            Index Cond: (ws_order_number = ws1_1.ws_order_number)                                                                  |
+|                                            Filter: (ws1_1.ws_warehouse_sk <> ws_warehouse_sk)                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+

@@ -1,0 +1,1 @@
+Iteration 4: total time taken for droppin the database= 0.392708 seconds

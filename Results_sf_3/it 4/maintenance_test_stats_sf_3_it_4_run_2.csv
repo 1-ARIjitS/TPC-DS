@@ -1,0 +1,9 @@
+Sql File,Start Time,End Time,Execution Time
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_1/0_tpcds_source.sql,2023-11-01 08:32:29.233576,2023-11-01 08:32:29.250524,0.016948
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_1/1_populate_s_tables.sql,2023-11-01 08:32:29.257317,2023-11-01 08:32:30.285453,1.028136
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_1/2_create_views.sql,2023-11-01 08:32:30.288727,2023-11-01 08:32:30.330017,0.04129
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_1/3_free_tuples_present_on_views.sql,2023-11-01 08:32:30.333147,2023-11-01 08:32:47.198636,16.865489
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_1/4_populate_main_tables_1.sql,2023-11-01 08:32:47.201760,2023-11-01 08:33:04.565727,17.363967
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_1/5_drop_s_tables_and_views.sql,2023-11-01 08:33:04.569253,2023-11-01 08:33:04.602110,0.032857
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_2/0_delete.sql,2023-11-01 08:33:04.604946,2023-11-01 08:33:12.867405,8.262459
+/mnt/d/TPC-DS/DW_project/maintenance/maintenance_data_sf_3/method_3/0_inventory_delete.sql,2023-11-01 08:33:12.870996,2023-11-01 08:33:13.038772,0.167776

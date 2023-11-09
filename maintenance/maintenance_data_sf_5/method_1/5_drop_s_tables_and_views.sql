@@ -1,0 +1,19 @@
+DROP VIEW IF EXISTS csv;
+DROP VIEW IF EXISTS crv;
+DROP VIEW IF EXISTS iv;
+DROP VIEW IF EXISTS srv;
+DROP VIEW IF EXISTS ssv;
+DROP VIEW IF EXISTS wrv;
+DROP VIEW IF EXISTS wsv;
+
+DROP TABLE IF EXISTS s_purchase_lineitem;
+DROP TABLE IF EXISTS s_purchase;
+DROP TABLE IF EXISTS s_catalog_order;
+DROP TABLE IF EXISTS s_web_order;
+DROP TABLE IF EXISTS s_catalog_order_lineitem;
+DROP TABLE IF EXISTS s_web_order_lineitem;
+DROP TABLE IF EXISTS s_store_returns;
+DROP TABLE IF EXISTS s_catalog_returns;
+DROP TABLE IF EXISTS s_inventory;
+DROP TABLE IF EXISTS s_web_returns;
+

@@ -1,0 +1,2 @@
+Iteration 3: Total time taken to execute power test on 99 queries with scale factor 5= 1983.65392 seconds
+Iteration 4: Total time taken to execute power test on 99 queries with scale factor 5= 1986.476613 seconds

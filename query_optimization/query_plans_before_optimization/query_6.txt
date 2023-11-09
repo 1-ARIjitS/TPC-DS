@@ -1,0 +1,41 @@
++----------------------------------------------------------------------------------------------------------------------------------------+
+|QUERY PLAN                                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------------------------+
+|Limit  (cost=9789939.72..9789939.76 rows=17 width=11)                                                                                   |
+|  InitPlan 1 (returns $0)                                                                                                               |
+|    ->  Unique  (cost=2520.41..2520.55 rows=28 width=4)                                                                                 |
+|          ->  Sort  (cost=2520.41..2520.48 rows=28 width=4)                                                                             |
+|                Sort Key: date_dim.d_month_seq                                                                                          |
+|                ->  Seq Scan on date_dim  (cost=0.00..2519.73 rows=28 width=4)                                                          |
+|                      Filter: ((d_year = 2000) AND (d_moy = 2))                                                                         |
+|  ->  Sort  (cost=9787419.17..9787419.21 rows=17 width=11)                                                                              |
+|        Sort Key: (count(*)), a.ca_state                                                                                                |
+|        ->  GroupAggregate  (cost=204801.98..9787418.82 rows=17 width=11)                                                               |
+|              Group Key: a.ca_state                                                                                                     |
+|              Filter: (count(*) >= 10)                                                                                                  |
+|              ->  Nested Loop  (cost=204801.98..9787412.79 rows=1079 width=3)                                                           |
+|                    ->  Gather Merge  (cost=204801.69..205178.81 rows=3238 width=7)                                                     |
+|                          Workers Planned: 2                                                                                            |
+|                          Params Evaluated: $0                                                                                          |
+|                          ->  Sort  (cost=203801.67..203805.04 rows=1349 width=7)                                                       |
+|                                Sort Key: a.ca_state                                                                                    |
+|                                ->  Nested Loop  (cost=1962.06..203731.54 rows=1349 width=7)                                            |
+|                                      ->  Nested Loop  (cost=1961.77..203245.75 rows=1349 width=8)                                      |
+|                                            ->  Parallel Hash Join  (cost=1961.35..202624.59 rows=1411 width=8)                         |
+|                                                  Hash Cond: (s.ss_sold_date_sk = d.d_date_sk)                                          |
+|                                                  ->  Parallel Seq Scan on store_sales s  (cost=0.00..191213.40 rows=3599740 width=12)  |
+|                                                  ->  Parallel Hash  (cost=1961.12..1961.12 rows=18 width=4)                            |
+|                                                        ->  Parallel Seq Scan on date_dim d  (cost=0.00..1961.12 rows=18 width=4)       |
+|                                                              Filter: (d_month_seq = $0)                                                |
+|                                            ->  Index Scan using customer_pkey on customer c  (cost=0.42..0.44 rows=1 width=8)          |
+|                                                  Index Cond: (c_customer_sk = s.ss_customer_sk)                                        |
+|                                      ->  Index Scan using customer_address_pkey on customer_address a  (cost=0.29..0.36 rows=1 width=7)|
+|                                            Index Cond: (ca_address_sk = c.c_current_addr_sk)                                           |
+|                    ->  Index Scan using item_pkey on item i  (cost=0.29..2959.31 rows=1 width=4)                                       |
+|                          Index Cond: (i_item_sk = s.ss_item_sk)                                                                        |
+|                          Filter: (i_current_price > (1.2 * (SubPlan 2)))                                                               |
+|                          SubPlan 2                                                                                                     |
+|                            ->  Aggregate  (cost=2958.98..2958.99 rows=1 width=32)                                                      |
+|                                  ->  Seq Scan on item j  (cost=0.00..2950.00 rows=3592 width=6)                                        |
+|                                        Filter: (i_category = i.i_category)                                                             |
++----------------------------------------------------------------------------------------------------------------------------------------+

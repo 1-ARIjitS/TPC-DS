@@ -1,0 +1,10 @@
+Iteration 1: Total time taken by thread_1 <Thread(Thread-1 (execute_queries), stopped 140199518602816)> for running 99 queries= 3081.220849 seconds 
+Iteration 1: Total time taken by thread_2 <Thread(Thread-2 (execute_queries), stopped 140199510148672)> for running 99 queries= 3081.222368 seconds 
+Iteration 1: Total time taken by thread_3 <Thread(Thread-3 (execute_queries), stopped 140199501694528)> for running 99 queries= 3081.223405 seconds 
+Iteration 1: Total time taken by thread_4 <Thread(Thread-4 (execute_queries), stopped 140199493240384)> for running 99 queries= 3081.224159 seconds 
+Iteration 1 run 1: Total time taken by throughput test= 3081.224918 seconds 
+Iteration 1: Total time taken by thread_1 <Thread(Thread-1 (execute_queries), stopped 140693990278720)> for running 99 queries= 3092.477666 seconds 
+Iteration 1: Total time taken by thread_2 <Thread(Thread-2 (execute_queries), stopped 140693981824576)> for running 99 queries= 3092.479819 seconds 
+Iteration 1: Total time taken by thread_3 <Thread(Thread-3 (execute_queries), stopped 140693973370432)> for running 99 queries= 3092.480726 seconds 
+Iteration 1: Total time taken by thread_4 <Thread(Thread-4 (execute_queries), stopped 140693964916288)> for running 99 queries= 3092.481546 seconds 
+Iteration 1 run 2: Total time taken by throughput test= 3092.482372 seconds 

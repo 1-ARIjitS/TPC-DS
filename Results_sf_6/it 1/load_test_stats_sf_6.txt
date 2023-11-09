@@ -1,0 +1,1 @@
+Iteration 1: Total time taken for running load test on scale factor 6 iteration 1= 677.39109 seconds
