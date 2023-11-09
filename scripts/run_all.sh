@@ -8,13 +8,13 @@
 set -eu
 
 # Check if exactly 2 arguments are provided
-# if [ "$#" -ne 2 ]; then
-#   echo "Usage: $0 <SCALE_FACTOR> <NUM_RUNS>"
-#   exit 1
-# fi
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 <SCALE_FACTOR> <NUM_RUNS>"
+  exit 1
+fi
 
 SCALE_FACTOR="$1"
-# NUM_RUNS=${1}
+NUM_RUNS=${2}
 
 ROOT_PATH=$(wslpath "D:/TPC-DS/DW_project")
 DATA_PATH=$(wslpath "D:/TPC-DS/DW_project/Copy_data/data")
@@ -27,28 +27,12 @@ DATA_PATH="${DATA_PATH}_sf_${SCALE_FACTOR}.sql"
 QUERY_FILES_PATH="${QUERY_FILES_PATH}_sf_${SCALE_FACTOR}_optimized"
 MAINTENANCE_QUERY_FILES_PATH="${MAINTENANCE_QUERY_FILES_PATH}_sf_${SCALE_FACTOR}"
 
-# for ((i = 1; i<=2; i++)); do
-# python3 ./load_test.py -rp ${ROOT_PATH} -dp ${DATA_PATH} -ct ${CREATE_TABLES_FILE} -sf ${SCALE_FACTOR}
-# python3 ./power_test.py -rp ${ROOT_PATH} -qp ${QUERY_FILES_PATH} -sf ${SCALE_FACTOR}
+for ((i = 1; i<=${NUM_RUNS}; i++)); do
+python3 ./load_test.py -rp ${ROOT_PATH} -dp ${DATA_PATH} -ct ${CREATE_TABLES_FILE} -sf ${SCALE_FACTOR}
+python3 ./power_test.py -rp ${ROOT_PATH} -qp ${QUERY_FILES_PATH} -sf ${SCALE_FACTOR}
 python3 ./throughput_test.py -rp ${ROOT_PATH} -qp ${QUERY_FILES_PATH} -sf ${SCALE_FACTOR}
 python3 ./maintenance_test.py -rp ${ROOT_PATH} -mp ${MAINTENANCE_QUERY_FILES_PATH} -sf ${SCALE_FACTOR}
 python3 ./throughput_test.py -rp ${ROOT_PATH} -qp ${QUERY_FILES_PATH} -sf ${SCALE_FACTOR}
 python3 ./maintenance_test.py -rp ${ROOT_PATH} -mp ${MAINTENANCE_QUERY_FILES_PATH} -sf ${SCALE_FACTOR}
 python3 ./db_postprocess.py -rp ${ROOT_PATH} -sf ${SCALE_FACTOR}
-# done
-
-
-
-1. Load test
-
-2. Power test
-
-3. Throughput test 1
-
-4. Maintenance test 1
-
-5. Thrughput test2
-
-6. Maintenance test 2
-
-7. DB postprocessing
+done
